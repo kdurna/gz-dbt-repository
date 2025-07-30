@@ -1,24 +1,19 @@
 select
-    sales.orders_id,
-    sales.date_date,
-    round(sum(sales.revenue), 2) as revenue,
-    sum(sales.quantity) as quantity,
-    round(sum(sales.quantity * product.purchase_price), 2) as purchase_cost,
-    round(sum(sales.revenue) - sum(sales.quantity * product.purchase_price), 2) as margin,
-    round(
-      (sum(sales.revenue) - sum(sales.quantity * product.purchase_price)) 
-      + sum(shipping.shipping_fee) 
-      - sum(shipping.logcost) 
-      - sum(shipping.ship_cost), 2
+    orders.orders_id
+    ,round(
+        orders.margin + ship.shipping_fee - ship.logcost - ship.ship_cost,
+        2
     ) as operational_margin
+    ,orders.date_date
+    ,orders.revenue
+    ,orders.quantity
+    ,orders.purchase_cost
+    ,orders.margin
+    ,ship.shipping_fee
+    ,ship.logcost
+    ,ship.ship_cost,
 from
-    {{ ref('stg_raw__sales') }} as sales
+    {{ ref('int_orders_margin') }} as orders
 left join
-    {{ ref('stg_raw__product') }} as product
-    using (products_id)
-left join
-    {{ ref('stg_raw__ship') }} as shipping
-    on sales.orders_id = shipping.orders_id
-group by
-    sales.orders_id,
-    sales.date_date
+    {{ ref('stg_raw__ship') }} as ship
+using (orders_id)
