@@ -10,7 +10,7 @@ renamed as (
 
     select
         date_date,
-        paid_source,
+        paid_source as paid_channel,
         campaign_key,
         campgn_name as campaign_name,
         cast(ads_cost as FLOAT64) as ads_cost,
