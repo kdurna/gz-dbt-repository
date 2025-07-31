@@ -5,7 +5,7 @@ select
     ,finance.average_basket
     ,campaigns.tot_ads_cost
     ,campaigns.tot_impression
-    ,campaigns.tot_clicks as ads_clics
+    ,campaigns.tot_clicks
     ,finance.tot_quantity
     ,finance.tot_revenue
     ,finance.tot_purchase_cost

@@ -2,7 +2,7 @@ select
     DATE_TRUNC(date_date, MONTH) as month_date
     ,sum(tot_ads_cost) as tot_ads_cost
     ,sum(tot_impression) as tot_impression
-    ,sum(tot_clicks) as tot_clicks
+    ,sum(ads_clics) as ads_clics
     ,round(avg(average_basket), 2) as average_basket
     ,sum(tot_quantity) as tot_quantity
     ,round(sum(tot_revenue),2) as tot_revenue
@@ -12,5 +12,5 @@ select
     ,round(sum(tot_logcost),2) as tot_logcost
     ,round(sum(tot_operational_margin) - sum(tot_ads_cost),2) as ads_margin
 from {{ ref('finance_campaigns_day') }}
-group by 1
+group by month_date
 order by month_date desc
