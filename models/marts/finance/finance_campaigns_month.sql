@@ -2,7 +2,7 @@ select
     DATE_TRUNC(date_date, MONTH) as month_date
     ,sum(tot_ads_cost) as tot_ads_cost
     ,sum(tot_impression) as tot_impression
-    ,sum(ads_clics) as ads_clics
+    ,sum(tot_clicks) as tot_clics
     ,round(avg(average_basket), 2) as average_basket
     ,sum(tot_quantity) as tot_quantity
     ,round(sum(tot_revenue),2) as tot_revenue
