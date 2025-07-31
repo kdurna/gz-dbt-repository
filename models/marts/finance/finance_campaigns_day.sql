@@ -4,7 +4,7 @@ select
     ,finance.tot_operational_margin - campaigns.tot_ads_cost as ads_margin
     ,finance.average_basket
     ,campaigns.tot_ads_cost
-    ,campaigns.tot_impression as ads_impressions
+    ,campaigns.tot_impression
     ,campaigns.tot_clicks as ads_clics
     ,finance.tot_quantity
     ,finance.tot_revenue
